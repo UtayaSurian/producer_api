@@ -16,7 +16,7 @@ class RabbitMQProducer:
         json_data = json.dumps(request)
         self.channel.basic_publish(
             exchange="",
-            routing_key="basic_queue",
+            routing_key=env_var.queue,
             body=json_data,
             properties=pika.BasicProperties(
                 delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE
