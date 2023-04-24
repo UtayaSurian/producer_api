@@ -8,8 +8,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s:%(mess
 
 class RabbitMQProducer:
     def __init__(self):
-        self.host = env_var.host
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(self.host))
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host=env_var.host, port=env_var.port))
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=env_var.queue, durable=True)
 
